@@ -1,48 +1,32 @@
 package tw.georgemei.plugin.seo.friendly.urls
 
 import grails.test.mixin.TestFor
-import org.junit.*
-import spock.lang.*
+import spock.lang.Specification
 
-/**
- * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
- */
 @TestFor(ChineseFriendlyUrlService)
 class ChineseFriendlyUrlServiceSpec extends Specification {
 
-    def setup() {
-    }
-
-    def cleanup() {
-    }
-
-    void "when using service method strings are sanitized"() {
-    	setup:
-		def chinesefriendlyUrlService = new ChineseFriendlyUrlService()
-		
+	void "when using service method strings are sanitized"() {
 		expect:
-		chinesefriendlyUrlService.sanitizeWithDashes(string) == sanitized
+		service.sanitizeWithDashes(string) == sanitized
 
 		where:
-		
+
 		string						| sanitized
 		""							| ""						//Empty string
 		"The Lord of the Rings"		| "the-lord-of-the-rings"	//Basics
 		"Raúl González Blanco"		| "raul-gonzalez-blanco"	//Accents
 		"España"					| "espana"					//N-tilde chars
 		"Los 3 Mosqueteros"			| "los-3-mosqueteros"		//Numbers
-		"Real Madrid® C.F."			| "real-madrid-cf"			//Edge cases						
+		"Real Madrid® C.F."			| "real-madrid-cf"			//Edge cases
 		"Článok"					| "clanok"
-    }
+	}
 
 	void "when using service method strings are chinese sanitized"() {
-    	setup:
-		def chinesefriendlyUrlService = new ChineseFriendlyUrlService()
-		
 		expect:
 		// chinesefriendlyUrlService.sanitizeWithDashes(string) == sanitized
-		chinesefriendlyUrlService.chineseSanitizeWithDashes(string) == sanitized
-		
+		service.chineseSanitizeWithDashes(string) == sanitized
+
 		where:
 		string						| sanitized
 		""							| ""						//Empty string
@@ -51,10 +35,7 @@ class ChineseFriendlyUrlServiceSpec extends Specification {
 		"Raúl González Blanco"		| "raul-gonzalez-blanco"	//Accents
 		"España"					| "espana"					//N-tilde chars
 		"Los 3 Mosqueteros"			| "los-3-mosqueteros"		//Numbers
-		"Real Madrid® C.F."			| "real-madrid-cf"			//Edge cases						
+		"Real Madrid® C.F."			| "real-madrid-cf"			//Edge cases
 		"Článok"					| "clanok"
-
-    }
-
-
+	}
 }
