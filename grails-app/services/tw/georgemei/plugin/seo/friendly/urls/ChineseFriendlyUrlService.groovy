@@ -1,7 +1,5 @@
 package tw.georgemei.plugin.seo.friendly.urls
 
-import grails.util.Environment
-
 import java.text.Normalizer
 
 import org.springframework.beans.factory.InitializingBean
@@ -84,8 +82,7 @@ class ChineseFriendlyUrlService implements InitializingBean {
 	}
 
 	void afterPropertiesSet() {
-		GroovyClassLoader classLoader = new GroovyClassLoader(getClass().getClassLoader())
-		ConfigObject config = new ConfigSlurper(Environment.current.name).parse(classLoader.loadClass('ChineseFriendlyUrlService'))
+		ConfigObject config = grailsApplication.config.grails.plugin.chineseSeoFriendlyUrls
 		log.debug config
 		Translate.clientId = config.bing.clientId
 		Translate.clientSecret = config.bing.clientSecret
