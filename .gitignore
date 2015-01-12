@@ -1,33 +1,11 @@
-# web application files
-/web-app/WEB-INF
-
-# IDE support files
+*.log
 /.classpath
-/.launch
 /.project
 /.settings
-/*.launch
-/*.tmproj
-/ivy*
-/eclipse
-
-# logs
-/stacktrace.log
-/test/reports
-/logs
-
-# plugin release files
-/*.zip
-/plugin.xml
-
-# older plugin install locations
-/plugins
-/web-app/plugins
-
-# "temporary" build files
 /target
 /target-eclipse
-plugin.xml
-
-# project release file
-/*.war
+/grails-chinese-seo-friendly-urls-*.zip
+/grails-chinese-seo-friendly-urls-*.zip.sha1
+/plugin.xml
+/web-app
+/chinese-seo-friendly-urls-config.groovy
