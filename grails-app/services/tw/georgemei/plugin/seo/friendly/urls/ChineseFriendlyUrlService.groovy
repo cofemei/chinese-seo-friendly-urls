@@ -4,10 +4,12 @@ import grails.util.Environment
 
 import java.text.Normalizer
 
+import org.springframework.beans.factory.InitializingBean
+
 import com.memetix.mst.language.Language
 import com.memetix.mst.translate.Translate
 
-class ChineseFriendlyUrlService {
+class ChineseFriendlyUrlService implements InitializingBean {
 
 	static transactional = false
 
@@ -16,13 +18,7 @@ class ChineseFriendlyUrlService {
 	String chineseSanitizeWithDashes(String text) {
 		if(!text) return ""
 
-		GroovyClassLoader classLoader = new GroovyClassLoader(getClass().getClassLoader())
-		ConfigObject config
 		try {
-			config = new ConfigSlurper(Environment.current.name).parse(classLoader.loadClass('ChineseFriendlyUrlService'))
-			log.debug config
-			Translate.clientId = config.bing.clientId
-			Translate.clientSecret = config.bing.clientSecret
 			String translatedText = Translate.execute(text, Language.CHINESE_TRADITIONAL, Language.ENGLISH)
 			return sanitizeWithDashes(translatedText)
 		}
@@ -85,5 +81,13 @@ class ChineseFriendlyUrlService {
 	 */
 	private String removeAccents(String text) {
 		Normalizer.normalize(text, Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "")
+	}
+
+	void afterPropertiesSet() {
+		GroovyClassLoader classLoader = new GroovyClassLoader(getClass().getClassLoader())
+		ConfigObject config = new ConfigSlurper(Environment.current.name).parse(classLoader.loadClass('ChineseFriendlyUrlService'))
+		log.debug config
+		Translate.clientId = config.bing.clientId
+		Translate.clientSecret = config.bing.clientSecret
 	}
 }
