@@ -1,5 +1,7 @@
 package tw.georgemei.plugin.seo.friendly.urls
 
+import grails.util.Environment
+
 import java.text.Normalizer
 
 import com.memetix.mst.language.Language
@@ -17,7 +19,7 @@ class ChineseFriendlyUrlService {
 		GroovyClassLoader classLoader = new GroovyClassLoader(getClass().getClassLoader())
 		ConfigObject config
 		try {
-			config = new ConfigSlurper().parse(classLoader.loadClass('ChineseFriendlyUrlService'))
+			config = new ConfigSlurper(Environment.current.name).parse(classLoader.loadClass('ChineseFriendlyUrlService'))
 			log.debug config
 			Translate.clientId = config.bing.clientId
 			Translate.clientSecret = config.bing.clientSecret
