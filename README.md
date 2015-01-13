@@ -4,12 +4,18 @@ It will translate your chinese text to english url based on [Microsoft Translato
 
 First, subscribe to [Microsoft Translator](https://datamarket.azure.com/dataset/bing/microsofttranslator) on Windows Azure Marketplace.
 
-Then, fill your Marketplace application info in <code>grails-app/conf/ChineseFriendlyUrlService.groovy</code>. You can create an app on "Marketplace Developer":https://datamarket.azure.com/developer/applications page.
+Then, fill your Marketplace application info in <code>grails-app/conf/Config.groovy</code>. You can create an app on "Marketplace Developer":https://datamarket.azure.com/developer/applications page.
 
 ``` groovy
-bing {
-	clientId = "Enter your Windows Azure Client Id here "
-	clientSecret = "/* Enter your Windows Azure Client Secret here */"
+grails {
+	plugin {
+		chineseSeoFriendlyUrls {
+			bing {
+				clientId = "CLIENT-ID"
+				clientSecret = "CLIENT-SECRET"
+			}
+		}
+	}
 }
 ```
 
