@@ -1,4 +1,18 @@
+## Install
+
+	 compile ':chinese-seo-friendly-urls:1.0'
+
 ## Chinese SEO Friendly URL's Grails Plugin
+
+用 Microsoft Translator 吧中文 SEO URL網址轉成英文，比如 Yahoo 新聞的中文網址
+    
+    https://tw.news.yahoo.com/%E9%A6%AC%E6%9E%97%E9%AD%9A%E7%86%84%E7%81%AB-%E6%82%B2%E6%83%85%E6%AE%B7%E4%BB%94%E5%90%9E%E9%A6%96%E6%95%97-215007277--mlb.html
+    
+會轉這下面這樣
+
+    https://tw.news.yahoo.com/fish-stall-lin-yin-zi-sadness-swallowed-first-defeat-215007277--MLB.html
+ 
+
 
 It will translate your chinese text to english url based on [Microsoft Translator](https://datamarket.azure.com/dataset/bing/microsofttranslator).
 
